@@ -117,6 +117,8 @@ paths:
     post:
       tags: 
        - Create
+      summary: Test summary.
+      
       description: |
          This operation enables the creation of a new detector resource. By using this endpoint, users can set up a detector instance to monitor and detect potential threats within their system.
          
