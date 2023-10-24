@@ -98,16 +98,8 @@ servers:
   
 # Labels for API endpoints
 tags: 
-  - name: Create
-    description: Create a detector.
-  - name: Retrieve IDs
-    description: Retrieve list of IDs of all existing GuardDuty detector resources.
-  - name: Retrieve One
-    description: Retrieves a GuardDuty detector specified by the detector ID.
-  - name: Update
-    description: Make changes to a detector.
-  - name: Delete
-    description: Remove a detector.
+  - name: Detector
+    description: Operations for the creation, modification, and retrieval of detector information.
 
 # API paths and operations
 paths:
@@ -117,7 +109,7 @@ paths:
     post:
       operationId: createDetector
       tags: 
-       - Create
+       - Detector
       summary: Create detector
       description: |
          This operation enables the creation of a new detector resource. By using this endpoint, users can set up a detector instance to monitor and detect potential threats within their system.
@@ -278,7 +270,7 @@ paths:
     get:
       operationId: listDetectorIds
       tags:
-        - Retrieve IDs
+        - Detector
       summary: List detectors
       description: This operation allows clients to obtain a list of the IDs associated with all existing detector resources. By accessing this endpoint, users can retrieve information about the available detectors within the system, facilitating further management and analysis.
       parameters:
@@ -318,7 +310,7 @@ paths:
     get:
       operationId: getDetectorDetails
       tags: 
-        - Retrieve One
+        - Detector
       summary: Retrieve detector details
       description: This operation retrieves a detector based on a specified <code>detectorId</code>. By providing the unique identifier associated with a particular detector, users can access detailed information and data specific to that detector instance.
       parameters:
@@ -345,7 +337,7 @@ paths:
     post:
       operationId: updateDetector
       tags:
-        - Update
+        - Detector
       summary: Update detector
       description: This operation enables users to update and modify the configuration of a specific detector identified by its <code>detectorId</code>. By providing the <code>detectorId</code> as a parameter in the request to this endpoint, users can make changes to various properties of the detector, such as alert thresholds, monitoring rules, or other relevant settings.
       parameters:
@@ -374,7 +366,7 @@ paths:
     delete:
       operationId: deleteDetector
       tags: 
-        - Delete
+        - Detector
       summary: Delete detector
       description: This operation allows users to delete a specific detector identified by its <code>detectorId</code>. By making a request to this endpoint with the <code>detectorId</code> parameter, users can remove the specified detector from their system, permanently discontinuing its monitoring and threat detection capabilities.
       parameters:
