@@ -9,13 +9,14 @@ info:
   title: Amazon Web Services (AWS) GuardDuty Detector
   version: '1.2'
   description: |
-  
-    [Developer - Wyatt Baker](https://www.upwork.com/freelancers/~01664f4b110985c1e6)
 
-    The AWS GuardDuty API enables real-time threat detection, automated response, and custom integrations to enhance the security of your AWS accounts.
+    ### The AWS GuardDuty API enables real-time threat detection, automated response, and custom integrations to enhance the security of your AWS accounts.
     
-      > **_NOTE:_** This is a mock version of AWS GuardDuty as no real endpoint exists. This documentaiton is designed to show how detectors within GuardDuty work.
+    [**Developer Profile**](https://www.upwork.com/freelancers/~01664f4b110985c1e6)
     
+    [**Click here to see this API documentation in Spotlight**](https://wyattbaker.stoplight.io/docs/guarddutydetectorapi/xgk9jkbsc9wnm-amazon-web-services-aws-guard-duty-detector)
+    
+    <br>
     ---
 
     <h2>Overview of GuardDuty API</h2>
@@ -32,15 +33,7 @@ info:
 
     ---
     
-    <h2>Getting Started with GuardDuty API</h2>
-     
-    The first step in securing your AWS accounts involves creating a detector that actively monitors your AWS environment, identifying and flagging potential threats.
-    
-    <br>
-    
-    ---
-    
-    <h2>Before You Begin</h2>
+    <h2>Getting Started</h2>
     
     First, [**create an AWS account**](https://portal.aws.amazon.com/billing/signup#/start/email) or [**sign in**](https://aws.amazon.com/marketplace/management/signin).
 
@@ -57,7 +50,17 @@ info:
     
     <h2>Authentication</h2>
     
-    To authenticate, create an <b>API key</b> that provides access to the operations available on the detector endpoints.   
+    To authenticate the Amazon GuardDuty API and access its security features, you can follow the following procedures to obtain the necessary API keys:
+
+    **1.** `awsAccountId`: Create an Amazon GuardDuty account to obtain the unique awsAccountId identifier.
+    
+    **2.** `awsAccessKeyId` and `awsSecretAccessKey`: Set up an IAM user with appropriate permissions in the AWS Management Console to obtain the awsAccessKeyId and awsSecretAccessKey API keys.
+    
+    **3.** `awsSessionToken`: Use AWS Identity and Access Management (IAM) to assume a role and obtain a temporary awsSessionToken API key.
+    
+    To authenticate with GuardDuty, include the API keys in your API requests. Securely store the keys and follow AWS best practices for protecting your GuardDuty resources.
+    
+    Please refer to [**official AWS documentation**](https://console.aws.amazon.com/guardduty) for more detailed and up-to-date instructions.   
     
     <br>
     
@@ -65,7 +68,7 @@ info:
     
     <h2>Create a detector</h2>
     
-    Creating a detector is the first step to secure your AWS accounts. In AWS GuardDuty, a detector actively monitors your environment, identifying suspicious activity and alerting you to potential threats.
+    Creating a detector using the `POST` operation is the first step to secure your AWS accounts. In AWS GuardDuty, a detector actively monitors your environment, identifying suspicious activity and alerting you to potential threats.
     
     <br>
     
@@ -73,28 +76,25 @@ info:
     
     <h2>All Detector Operations</h2>
     
-    Once you have created at least one detector, you can perform four additional operations on the detector endpoints:
+    In addition to creating a detector using `POST` operation, you can perform four additional operations on the detector endpoints:
     
-    <ul>
-    <dl>
-      <li><dt>Retrieve IDs</dt>
-      <dd>This operation allows users to obtain a list of the IDs associated with all existing detector resources.</dd></li>
-      <br>
-      <li><dt>Retrieve One</dt>
-      <dd>This operation retrieves a detector based on a specified <code>detectorId</code>.</dd></li>
-      <br>
-      <li><dt>Update</dt>
-      <dd>This operation enables users to modify the properties of a specific detector identified by its <code>detectorId</code>.</dd></li>
-      <br>
-      <li><dt>Delete</dt>
-      <dd>This operation allows users to delete a specific detector identified by its <code>detectorID</code>
-    </dl>
-    </ul>
-    <b>
-    <p>See request and response details for each of these endpoints below.</p>
+    - **Retrieve IDs**: This `GET` operation allows users to obtain a list of the IDs associated with all existing detector resources.
     
+    - **Retrieve One**: This `GET` operation retrieves a detector based on a specified `detectorId`.
+    
+    - **Update**: This `POST` operation enables users to modify the properties of a specific detector identified by its `detectorId`.
+    
+    - **Delete**: This `DELETE` operation allows users to delete a specific detector identified by its `detectorID`.
+    
+    <br>
+    
+    **See request and response details for each of these endpoints below.**
+    
+    > **_NOTE:_**  Please use the Mock Server when testing requests, as this is a simulated version of AWS GuardDuty.
+    
+     
 servers:
-  - url: http://placeholder/1.2
+  - url: https://virtserver.swaggerhub.com/WYATTCOLEBAKER16_1/GuardDutyAPI_3.0/1.2
   
 # Labels for API endpoints
 tags: 
@@ -115,10 +115,9 @@ paths:
   /detector: 
     # POST /detector
     post:
+      operationId: createDetector
       tags: 
        - Create
-      summary: Test summary.
-      
       description: |
          This operation enables the creation of a new detector resource. By using this endpoint, users can set up a detector instance to monitor and detect potential threats within their system.
          
@@ -266,15 +265,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DetectorCreateResponse'
+          
         '400':
           description: A bad request exception object.
         '403':
-          description: Forbiden. Request contained valid data, but the server is refusing action due to the user not having neccesary permissions. (For this example API this represents success)
+          description: Forbiden. Request contained valid data, but the server is refusing action due to the user not having neccesary permissions. (For this example  API this represents success)
         '500':
           description: An internal server error exception object.
         
     # GET /detector
     get:
+      operationId: listDetectorIds
       tags:
         - Retrieve IDs
       description: This operation allows clients to obtain a list of the IDs associated with all existing detector resources. By accessing this endpoint, users can retrieve information about the available detectors within the system, facilitating further management and analysis.
@@ -313,6 +314,7 @@ paths:
   /detector/{detectorId}:
     # GET /detector/{detectorID}
     get:
+      operationId: getDetectorDetails
       tags: 
         - Retrieve One
       description: This operation retrieves a detector based on a specified <code>detectorId</code>. By providing the unique identifier associated with a particular detector, users can access detailed information and data specific to that detector instance.
@@ -338,6 +340,7 @@ paths:
           
     # POST /detector/{detectorID}
     post:
+      operationId: updateDetector
       tags:
         - Update
       description: This operation enables users to update and modify the configuration of a specific detector identified by its <code>detectorId</code>. By providing the <code>detectorId</code> as a parameter in the request to this endpoint, users can make changes to various properties of the detector, such as alert thresholds, monitoring rules, or other relevant settings.
@@ -365,6 +368,7 @@ paths:
     
     # DELETE /detector/{detectorID}
     delete:
+      operationId: deleteDetector
       tags: 
         - Delete
       description: This operation allows users to delete a specific detector identified by its <code>detectorId</code>. By making a request to this endpoint with the <code>detectorId</code> parameter, users can remove the specified detector from their system, permanently discontinuing its monitoring and threat detection capabilities.
@@ -405,7 +409,7 @@ components:
       type: apiKey
       name: X-AWS-SESSION-TOKEN
       in: header
-      
+
   # Schemas 
   schemas:
     # CreateRequest schema
