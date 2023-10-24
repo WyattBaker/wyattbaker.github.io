@@ -386,6 +386,10 @@ components:
       type: apiKey
       name: X-AWS-ACCOUNT-ID
       in: header
+      description: |
+        Your AWS Account ID.
+        
+        Test description.
     awsAccessKeyId:
       type: apiKey
       name: X-AWS-ACCESS-KEY-ID
