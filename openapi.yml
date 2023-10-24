@@ -66,14 +66,6 @@ info:
     
     ---
     
-    <h2>Create a detector</h2>
-    
-    Creating a detector using the `POST` operation is the first step to secure your AWS accounts. In AWS GuardDuty, a detector actively monitors your environment, identifying suspicious activity and alerting you to potential threats.
-    
-    <br>
-    
-    ---
-    
     <h2>All Detector Operations</h2>
     
     In addition to creating a detector using `POST` operation, you can perform four additional operations on the detector endpoints:
