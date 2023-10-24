@@ -276,6 +276,7 @@ paths:
         
     # GET /detector
     get:
+      summary: List Detectors
       operationId: listDetectorIds
       tags:
         - Retrieve IDs
